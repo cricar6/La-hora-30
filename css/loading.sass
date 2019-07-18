@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,500,500i,700,700i|Syncopate:400,700&display=swap');
+
+.loading 
+    width: 100vw
+    height: 100vh
+    display: flex
+    flex-direction: column
+    align-content: center
+    align-items: center
+    justify-content: center
+    &__animation
+        position: relative
+        display: flex
+        flex-direction: column
+        align-content: center
+        align-items: center
+        justify-content: center
+        &__svg
+            width: 100px
+            height: 100px
+            filter: saturate(80%)
+    &__btn
+        font-family: Syncopate
+        font-weight: bold
+        font-size: 24px
+        line-height: 25px
+
+        color: #F1F1F1
+        z-index: 2
+        text-transform: uppercase
+
+
+.btn--disabled
+    position: relative
+    margin-top: -60px
+    cursor: auto
+
+
+.btn--avaible
+    margin-top: 35px
+
+.btn--disabled:after
+    content: '00:00:00'
+
+    font-family: Work Sans
+    font-style: normal
+    font-weight: normal
+    font-size: 16px
+    line-height: 19px
+
+    text-align: right
+    text-transform: uppercase
+
+    position: absolute
+    right: 3px

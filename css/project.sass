@@ -1,0 +1,175 @@
+    
+.project
+    height: 100%
+    width: 100%
+    background: black
+    overflow-y: auto
+    overflow-x: hidden
+    display: none
+    position: relative
+    box-sizing: border-box
+    padding: 20px
+    &__but-back
+        position: absolute
+
+        top: 40px
+        right: 40px
+        background: none
+        border: none
+        cursor: pointer
+        transition: transform .25s ease-in-out
+        &:hover
+            transform: scale(1.2)
+
+        &:focus
+            outline: none
+        svg
+            width: 21px
+            height: 21px
+    &__but-random
+        position: absolute
+        bottom: 40px
+        left: 40px
+        background: none
+        border: none
+
+        &:focus
+            outline: none
+        &__dummie
+            position: absolute
+            bottom: 0
+            left: 0
+
+            background: rgba(255,255,255,.3)
+            width: 65px
+            height: 65px
+            display: flex
+            justify-content: center
+            align-items: center
+            align-content: center
+            border-radius: 100px
+            transition: transform ease .5s
+
+            &__leader
+            
+                position: absolute
+                bottom: 0
+                left: 0
+                margin: 7.5px
+                width: 50px
+                height: 50px
+                background-size: cover
+                background-position: center
+                background: white
+                border-radius: 100px
+    &__but-leader
+        position: absolute
+        top: 40px
+        left: 40px
+        background: none
+        border: none
+
+        display: flex
+        flex-direction: row
+        align-items: center
+    
+        transition: transform .25s ease-in-out
+        &:hover
+            transform: scale(1.15)
+
+        &__leader
+            background: none
+            border: white 1px solid
+            border-radius: 100px
+            width: 65px
+            height: 65px
+            display: flex
+            justify-content: center
+            align-content: center
+            align-items: center
+            &__img
+                width: 50px
+                height: 50px
+                background: white
+                border-radius: 50px
+        &__name
+            margin-left: 20px
+            font-family: Work Sans
+            font-style: normal
+            font-weight: 500
+            font-size: 16px
+            line-height: 19px
+            /* identical to box height */
+
+            letter-spacing: 0.1em
+            text-transform: uppercase
+
+            color: #FFFFFF
+
+            text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5)
+    &__container
+        height: 100%
+        width: 100%
+        &__bars-container
+            display: flex
+            flex-direction: column
+            position: absolute
+            bottom: 40px
+            right: 40px
+            font-family: Work Sans
+            font-style: normal
+            font-weight: 500
+            font-size: 16px
+            line-height: 19px
+            text-align: center
+            text-transform: uppercase
+            color: #FFFFFF
+
+            text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+            &__bar
+                width: 10px
+                height: 10px
+                //background: #1f1f1f
+                opacity: .3
+                box-sizing: border-box
+                margin: 10px 0px
+    &__but-story 
+        padding: 50px
+        cursor: pointer
+        position: absolute
+        top: calc(100vh / 2)
+        button
+            cursor: pointer
+    &__but-previous 
+        left: 50
+    &__but-next
+        right: 50
+
+    &__content-layout
+        width: 100vw
+        &__swipe-up
+            width: 100%
+            display: flex
+            flex-direction: column
+            align-content: center
+            align-items: center
+            transition: transform ease .5s
+            margin-top: -60px
+            &__bar
+                background: white
+                height: 50px
+                width: 100%
+                padding: 20px
+            &__copy
+                margin-bottom: 50px
+        &__container
+            margin-top: -50px
+            width: 100%
+            height: 100%
+            background: white
+
+.story_container
+    width: 100%
+    height: 100%
+    background: #1f1f1f
+    border-radius: 8px

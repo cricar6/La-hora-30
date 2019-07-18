@@ -1,0 +1,149 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>La Hora 30</title>
+
+    <link href="https://vjs.zencdn.net/7.5.5/video-js.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/loading.css">
+    <link rel="stylesheet" href="./css/intro.css">
+    <link rel="stylesheet" href="./css/project.css">
+
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+</head>
+
+<body>
+    <!--
+        This is the loading screen, will load when all elements are ready
+    -->
+    <div class="loading">
+        <div class="loading__animation">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg class="loading__animation__svg" fill="none" viewBox="0 0 109 109" xmlns="http://www.w3.org/2000/svg">
+
+            </svg>
+            <button class="loading__btn btn btn--disabled">
+                Cargando
+            </button>
+        </div>
+    </div>
+
+    <div class="app">
+                <!--
+            This is the intro video screen
+        -->
+        <div class="intro-screen">
+            <div class="intro-screen__vid-plyr">
+                    <video
+                    id='intro-screen__vid-plyr__intro-vid'
+                    class='video-js'
+                    playsinline 
+                    preload='none'
+                    data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=m1_ThrVv4Tc&feature=youtu.be"}] }'
+                  >
+                  </video>
+            </div>
+            <div class="intro-screen__vid-plyr__container">
+                <button class="intro-screen__vid-plyr__container__btn-play">
+                    
+                </button>
+            </div>
+            <div class="intro-screen__vid-plyr__low-bar">
+                <button class="intro-screen__vid-plyr__low-bar__btn-mute btn">
+                    Sonido
+                </button>
+                <button class="intro-screen__vid-plyr__low-bar__btn-skip btn">
+                    Saltar Introducción
+                </button>
+            </div>
+            <div class="intro-screen__vid-plyr__progress-bar">
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard">
+
+        <div class="dashboard__logo">
+            <img src="./LO GO.png" alt="La Hora 30">
+        </div> 
+        <ul class="dashboard__menu">
+            <li class="dashboard__menu__element"><button>Proyectos</button></li>
+            <li class="dashboard__menu__element"><button>Líderes</button></li>
+            <li class="dashboard__menu__element"><button class ="dashboard__but-back">Trailer</button></li>
+        </ul>
+        <div class="dashboard__share">
+            <img src="./Group 6.png" alt="Compartir">
+        </div>
+
+    </div>
+
+        <!--
+            This is the project showing screen
+        -->
+
+        <div class="project">
+            <button class="project__but-back">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.5 1.5L23 23" stroke="#F1F1F1" stroke-width="2"/>
+                    <path d="M23 1.5L1.5 23" stroke="#F1F1F1" stroke-width="2"/>
+                </svg>                    
+            </button>
+
+            <button class="project__but-leader">
+                <div class="project__but-leader__leader">
+                    <div class="project__but-leader__leader__img">
+                        
+                    </div>
+                </div>
+                <div class="project__but-leader__name">Henri zamora</div>
+            </button>
+
+            <button class="project__but-random">
+                <div class="project__but-random__dummie">
+                </div>
+
+                <div class="project__but-random__dummie__leader">  
+                </div>
+            </button>
+
+            <div class="project__but-previous project__but-story">
+                <button>Previous</button> 
+            </div>
+            <div class="project__but-next project__but-story">
+                <button>Next</button>
+            </div>
+
+            <div class="project__container">
+                
+            </div>
+        </div>
+    <!--Grain old TV effect filter-->
+    <canvas id="grain"></canvas>
+
+    <!--Library Scripts-->
+    <script type='text/javascript' src="./js/grain.js"></script>
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js?ver=1.3.2'></script>
+    <script type='text/javascript' src='https://vjs.zencdn.net/7.5.5/video.js'></script>
+    <script type='text/javascript' src="./js/Youtube.min.js"></script>
+    <script type='text/javascript' src='./js/jquery.mousewheel.min.js'></script>
+
+    <!--Project Scripts-->
+    <script type='text/javascript' src="./js/svg_resources.js"></script>
+    <script type='text/javascript' src="./js/loading.js"></script>
+    <script type='text/javascript' src="./js/intro.js"></script>
+    <script type='text/javascript' src="./js/snapshot.js"></script>
+    <script type='text/javascript' src="./js/elements.js"></script>
+    <script type='text/javascript' src="./js/dashboard.js"></script>
+    <script type='text/javascript' src="./js/project.js"></script>
+
+
+    <script src="./js/screening.js"></script>
+
+
+</body>
+
+</html>
