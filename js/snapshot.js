@@ -84,14 +84,12 @@ class Snapshot {
             pos_x = Math.floor(Math.random() * (pos_x_max - pos_x_min)) + pos_x_min :
             pos_x = this.context.width + width;
         
-        const determined_height = this.context.height / 4;
+        const determined_height = this.context.height / 5;
 
-        const pos_y_pos = [0, determined_height, determined_height*2, determined_height*3];
+        const pos_y_pos = [determined_height, determined_height*2, determined_height*3];
         let index = Math.floor(Math.random() * pos_y_pos.length),
             pos_y = pos_y_pos[index];
     
-        if (pos_y - ((this.context.height / 100) * height)/2 < 0) pos_y = pos_y + ((this.context.height / 100) * height)/2 ;
-        if (pos_y + ((this.context.height / 100) * height)/2 >  pos_y_max) pos_y = pos_y - ((this.context.height / 100) * height)/2 - 100;
             //let pos_y = Math.floor(Math.random() * (pos_y_max - pos_y_min)) + pos_y_min;
 
         this.pos_x = pos_x;
@@ -106,7 +104,7 @@ class Snapshot {
      * of sizes, and height will be defined respecting the ratio
      */
     defineSize() {
-        const widths = [20, 25, 30];
+        const widths = [15, 20, 25];
         let index = Math.floor(Math.random() * widths.length),
             width_selected = widths[index];
 

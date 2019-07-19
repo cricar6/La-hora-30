@@ -105,8 +105,13 @@ function createElement(parent_context, new_snapshot, isFirst) {
         let to_project = new_snapshot.toProject;
 
         current_project = projects.find((element) => {
+
+            console.log(element.leader.id, "leader ID");
+
+            console.log(getVars(to_project).leader, "GET VARS leader");
             return element.leader.id == getVars(to_project).leader;
         });
+
 
         let media_selected = getVars(to_project).media;
         

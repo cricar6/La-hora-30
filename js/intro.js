@@ -1,5 +1,4 @@
 const btn_play = document.querySelector(".intro-screen__vid-plyr__container__btn-play");
-btn_play.innerHTML = pause_res;
 
 const intro_vid = videojs(document.querySelector('#intro-screen__vid-plyr__intro-vid'), {
     controls: false,
@@ -22,32 +21,6 @@ intro_vid.ready(function () {
 
     loaded = true;
 
-    window.addEventListener("mousemove", () => {
-        btn_play.style.opacity = '1';
-
-        setTimeout(() => {
-            btn_play.style.opacity = '0';
-        }, 2000);
-    });
-
-    document.querySelector('.intro-screen__vid-plyr__container__btn-play').addEventListener("click", () => {
-        if (paused) {
-            btn_play.innerHTML = pause_res;
-            
-            intro_vid.play();
-            paused = !paused;
-
-            console.log("Client: The video has been played");
-        } else {
-            btn_play.innerHTML = play_res;
-
-            intro_vid.pause();
-            paused = !paused;
-
-            console.log("Client: The video has been paused");
-        }
-
-    });
 
     document.querySelector('.intro-screen__vid-plyr__low-bar__btn-mute').addEventListener("click", () => {
         if (muted) {

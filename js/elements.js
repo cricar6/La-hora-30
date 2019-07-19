@@ -35,11 +35,6 @@ let projects = [
                 toProject: "leader:marta&media:4",
                 source: "https://www.youtube.com/watch?v=L58-wA-IzEU",
                 thumb: "https://i.imgur.com/vc2QbcG.png"
-            }, {
-                type: 2, id: "marta_05",
-                toProject: "leader:marta&media:5",
-                source: "--",
-                thumb: "https://i.imgur.com/MmoQ9y9.png"
             }
         ]
     }, {
@@ -64,7 +59,7 @@ let projects = [
                 thumb: "https://i.imgur.com/XMV8t1s.png"
             }, {
                 type: 2, id: "miguel_02",
-                toProject: "leader:_miguel&media:2",
+                toProject: "leader:miguel&media:2",
                 source: "https://www.youtube.com/watch?v=zXO6ua_ia6Y",
                 thumb: "https://i.imgur.com/FJivTFu.png"
             }, {
@@ -84,7 +79,7 @@ let projects = [
                 thumb: "https://i.imgur.com/fhPMwwI.png"
             }, {
                 type: 2, id: "miguel_06",
-                toProject: "leader:_miguel&media:6",
+                toProject: "leader:miguel&media:6",
                 source: "https://www.youtube.com/watch?v=j52dPJRHmWo",
                 thumb: "https://i.imgur.com/FeWKifm.png"
             }

@@ -9,7 +9,7 @@ const project_html = document.querySelector(".project");
  * Random is out createProject because it is external 
  * to project
  *  
- * */
+* */
 function startProject() {
 
     console.log("Client: Project Screen started");
@@ -17,7 +17,6 @@ function startProject() {
     createProject();
 
     // The vars for random button --------------------------------------------------------
-
     let resting_projects = [0, 1, 2, 3];
 
     index_proj = projects.findIndex((element) => {
@@ -38,17 +37,50 @@ function startProject() {
                 shuffle(resting_projects);
             }
         } else {
-            clearInterval(pass_story);
-            project_container.innerHTML = "Desea continuar? Si No"
+            //añadir pop-up
+
+            const pop_up = document.createElement("div");
+            pop_up.classList.add("pop-up");
+                        
+            const background = document.createElement("div");
+            background.classList.add("pop-up__background");
+                        
+            const pop_up_container = document.createElement("div");
+            pop_up_container.classList.add("pop-up__container");
+            
+            const pop_up_description = document.createElement("p");
+            pop_up_description.innerHTML = "Las historias acabaron, ¿quieres continuar viéndolas?";
+            pop_up_description.classList.add("pop-up__container__description");
+            
+            const pop_up_but_container = document.createElement("div");
+            pop_up_but_container.classList.add("pop-up__container__but-container");
+            
+            const pop_up_no = document.createElement ("button");
+            pop_up_no.innerHTML = "No";
+            pop_up_no.classList.add("pop-up__container__but-container__no");
+
+            const pop_up_yes = document.createElement ("button");
+            pop_up_yes.innerHTML = "Yes";
+            pop_up_yes.classList.add("pop-up__container__but-container__yes");
+            
+            pop_up_but_container.appendChild(pop_up_no);
+            pop_up_but_container.appendChild(pop_up_yes);
+
+            pop_up_container.appendChild(pop_up_description);
+            pop_up_container.appendChild(pop_up_but_container);
+
+            background.appendChild(pop_up_but_container);
+            pop_up.appendChild(background);
+            
+            project_container.appendChild(pop_up);
         }
 
         if (resting_projects[0] != undefined) {
 
             current_project = projects[resting_projects[0]];
             console.log(current_project);
+            document.querySelector(".project__container__bars-container").remove();
 
-            project_container.innerHTML = "";
-            clearInterval(pass_story);
             createProject();
             resting_projects[0] = undefined;
         }
@@ -70,161 +102,95 @@ function startProject() {
  */
 function createProject() {
     //The element leader is temporary
-
-    const story_container = document.createElement('div');
-    story_container.classList.add('story_container');
-
-    const current_story_container = document.createElement('p');
-    
     let current_story_index = JSON.parse(localStorage.getItem("media_selected"));
-    let current_story = current_project.media[current_story_index];
-
-    createStory(current_story_container, current_story);
     
-    current_story_index += 1;
-
+    let current_story = current_project.media[current_story_index];
+    
     const current_story_media_bars = document.createElement('div');
     current_story_media_bars.classList.add('project__container__bars-container');
-
-    // The bar stuff --------------------------------------------------------
     
+    // The bar stuff --------------------------------------------------------
     current_project.media.forEach((element, index) => {
-
         const current_story_bar = document.createElement('div');
         current_story_bar.classList.add('project__container__bars-container__bar');
-        current_story_bar.innerHTML = index+1;
-
+        current_story_bar.innerHTML = index + 1;
+        
         current_story_bar.classList.add('media-bar' + element.id);
         current_story_media_bars.appendChild(current_story_bar);
     });
+    
+    project_container.appendChild(current_story_media_bars);
+    
+    document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
+        element.style.opacity = ".5";
+    });
+    
 
-    // The interval to pass --------------------------------------------------------
+    
+    changeVideo(current_story, current_story_index, true);
+    
 
-    pass_story = setInterval(() => {
-        if (current_story_index >= current_project.media.length) {
-            console.log("gi")
 
-            current_story_index = 0;
-        }
+    document.querySelector(".project__but-next").addEventListener('mouseover', () => {
+        console.log("nex")
+        document.querySelector(".project__but-next button").style.transform = 'scale (1.2)';
+    });
 
-        current_story = current_project.media[current_story_index];
-        current_story_index += 1;
-        console.log("incremento", current_story_index);
-
-        createStory(current_story_container, current_story);
-
-        document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
-            element.style.opacity = ".5";
-        });
-        document.querySelector('.media-bar' + current_story.id).style.opacity = "1";
-    }, 3000);
-
+    document.querySelector(".project__but-previous").addEventListener('mouseover', () => {
+        console.log("prev")
+        document.querySelector(".project__but-previous button").style.transform = 'scale (1.2)';
+    });
 
 
     // The listener previous --------------------------------------------------------
-
-
-
     document.querySelector(".project__but-previous").addEventListener("click", () => {
-        clearInterval(pass_story);
-
-        current_story_index -= 1;
-        console.log("decremento", current_story_index);
-
-        if (current_story_index < 0) {
-            current_story_index = current_project.media.length - 1;
+        
+        let current_index = JSON.parse(localStorage.getItem("media_selected"));
+        
+        current_index--;
+        if (current_index < 0) {
+            current_index = current_project.media.length - 1;
         }
+ 
+        localStorage.setItem("media_selected", current_index);
 
-        current_story = current_project.media[current_story_index];
-        createStory(current_story_container, current_story);
-
+        let current_story = current_project.media[current_index];
+        
         document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
             element.style.opacity = ".5";
         });
-        document.querySelector('.media-bar' + current_story.id).style.opacity = "1";
-
-        // The interval --------------------------------------------------------
-
-        pass_story = setInterval(() => {
-            if (current_story_index >= current_project.media.length) {
-                current_story_index = 0;
-            }
-
-            current_story = current_project.media[current_story_index];
-            current_story_index += 1;
-            console.log("incremento", current_story_index);
-
-            createStory(current_story_container, current_story);
-
-            document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
-                element.style.opacity = ".5";
-            });
-
-            document.querySelector('.media-bar' + current_story.id).style.opacity = "1";
-        }, 3000);
-
+        changeVideo(current_story, current_index, false);
     });
-
 
     // The listener next --------------------------------------------------------
-
-
     document.querySelector(".project__but-next").addEventListener("click", () => {
-        clearInterval(pass_story);
+        let current_index = JSON.parse(localStorage.getItem("media_selected"));
+        
+        current_index++;
 
-        current_story_index += 1;
-        console.log("incremento", current_story_index);
-
-        if (current_story_index >= current_project.media.length) {
-            current_story_index = 0;
+        if (current_index >= current_project.media.length) {
+            current_index = 0;
         }
 
-        current_story = current_project.media[current_story_index];
-        createStory(current_story_container, current_story);
+        localStorage.setItem("media_selected", current_index);
 
-
+        let current_story = current_project.media[current_index];
+        
         document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
             element.style.opacity = ".5";
         });
-
-        document.querySelector('.media-bar' + current_story.id).style.opacity = "1";
-
-        // The interval --------------------------------------------------------
-
-        pass_story = setInterval(() => {
-            if (current_story_index >= current_project.media.length) {
-                current_story_index = 0;
-            }
-
-            current_story = current_project.media[current_story_index];
-            current_story_index += 1;
-            console.log("incremento", current_story_index);
-
-            createStory(current_story_container, current_story);
-
-            document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
-                element.style.opacity = ".5";
-            });
-
-            document.querySelector('.media-bar' + current_story.id).style.opacity = "1";
-        }, 3000);
+        changeVideo(current_story, current_index, true);
     });
 
 
-    // The DOM to HTML adders --------------------------------------------------------
-
-
-
-    story_container.appendChild(current_story_container);
-    project_container.appendChild(story_container);
-    project_container.appendChild(current_story_media_bars);
+    // The DOM to HTML adders ------------
 
     //project_html.appendChild(createProjectContentLayout(current_project));
 
     // after all elements were added from dom
 
     requestAnimationFrame(() => randomAnim());
-    
+
     document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
         element.style.opacity = ".5";
     });
@@ -233,57 +199,77 @@ function createProject() {
     document.querySelector(".project__but-leader__name").innerHTML = current_project.leader.name;
 
     const leader_img = document.querySelector(".project__but-leader__leader__img");
-    leader_img.style.backgroundImage = "url("+ current_project.leader.thumb +")";
+    leader_img.style.backgroundImage = "url(" + current_project.leader.thumb + ")";
 
 
+
+    
+}
+
+function changeVideo (content, current_index, pass) {
+    videojs(document.querySelector('#story_container__video')).ready(function () {
+    
+        let player = this;
+        let executed = false;
+
+        player.pause();
+        player.src({type: 'video/youtube', src: content.source});
+
+        player.load();
+
+        player.play();
+        
+        document.querySelectorAll('.project__container__bars-container__bar').forEach(element => {
+            element.style.opacity = ".5";
+        });
+
+        document.querySelector('.media-bar' + content.id).style.opacity = "1";
+    
+        console.log("This is entrying", current_index);
+        player.on('ended', function () {
+            if (!executed) {
+                
+                if (pass) {
+                    
+    
+                    current_index++;
+    
+                    //insert code of finished here
+                    if (current_index >= current_project.media.length) {
+                    
+                        current_index = 0;
+                    }
+                } else {
+                    current_index--;
+
+                    if (current_index < 0) {
+                        current_index = current_project.media.length - 1;
+                    }
+                }
+    
+                console.log("will asign this", current_index);
+    
+                localStorage.setItem("media_selected", current_index);
+
+                let current_story = current_project.media[current_index];
+                                 
+
+                changeVideo(current_story, current_index, true)
+                //executed = true
+            }
+        });
+    });
 }
 
 /**
- * 
  * @param {HTML object} container 
  * @param {media object} content 
  */
-function createStory (container, content) {
-    container.innerHTML = content.source;
-} 
-
-function createProjectContentLayout(current_project) {
-
-    const project_content_layout = document.createElement('div');
-    project_content_layout.classList.add("project__content-layout");
-
-    const swipe_up_link = document.createElement('a');
-
-    const swipe_up = document.createElement('div');
-    swipe_up.classList.add("project__content-layout__swipe-up");
-
-    const swipe_up_bar = document.createElement('div');
-    swipe_up_bar.classList.add("project__content-layout__swipe-up__bar");
-
-    const swipe_up_copy = document.createElement('div');
-    swipe_up_copy.innerHTML = "Swipe up";
-    swipe_up_copy.classList.add("project__content-layout__swipe-up__copy");
-
-    swipe_up.appendChild(swipe_up_copy);
-    swipe_up.appendChild(swipe_up_bar);
-
-    swipe_up_link.appendChild(swipe_up);
-    project_content_layout.appendChild(swipe_up_link);
-
-    const project_content_layout_container = document.createElement('div');
-    project_content_layout_container.classList.add("project__content-layout__container");
-    project_content_layout_container.setAttribute("id", "project_content_container");
-
-    swipe_up_link.setAttribute("href", "#project_content_container");
-    project_content_layout.appendChild(project_content_layout_container);
-
-    return project_content_layout;
-}
 
 const random_anim_duration = 500;
 const random_anim_wait = 3000;
 
-function randomAnim() {        
+function randomAnim() {
     document.querySelector(".project__but-random__dummie").style.transform = "scale(1.15)";
     setTimeout(() => {
         document.querySelector(".project__but-random__dummie").style.transform = "scale(1)";

@@ -55,7 +55,9 @@ document.querySelector(".dashboard__but-back").addEventListener("click", () => {
 // In case the user returns from project to dashboard this button will start dashboard again
 document.querySelector(".project__but-back").addEventListener("click", () => {
     document.querySelector(".dashboard").style.display = "block";
-    project_container.style.display = "none";
+    document.querySelector(".project").style.display = "none";
+    document.querySelector(".project__container__bars-container").remove();
+
     isDash = true;
 
     dash_listener = setInterval(() => {
@@ -90,5 +92,5 @@ document.querySelector(".project__but-back").addEventListener("click", () => {
                 console.log("Client: An element has been created: " + rndm_element.id, "Resting elements Out: ", elements_out);
             }
         }
-    }, 3000);
+    }, 5000);
 });
