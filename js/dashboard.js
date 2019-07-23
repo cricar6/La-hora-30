@@ -72,7 +72,7 @@ let restore_snaps = setInterval(() => {
             console.log("Client: An element has been created: " + rndm_element.id, "Resting elements Out: ", elements_out);
         }
     }
-}, 5000);
+}, 8000);
 
 // ---------------------------------------------------------------------------------
 /**
@@ -101,6 +101,8 @@ function createElement(parent_context, new_snapshot, isFirst) {
 
     snap.start();
 
+    console.log("element_created");
+    
     snapshot.addEventListener('click', () => {
         let to_project = new_snapshot.toProject;
 
@@ -174,4 +176,7 @@ function closeDash () {
     console.log("Client: Dashboard cleared");
 
     startProject();
+
+    videojs(document.querySelector('#story_container__video')).muted(false);
+    
 }

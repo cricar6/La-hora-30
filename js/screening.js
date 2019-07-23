@@ -13,23 +13,24 @@ document.querySelector(".intro-screen__vid-plyr__low-bar__btn-skip").addEventLis
 
     // This listener will add all elements to screen in the first place
     // and after it will kill itself
-    dash_listener = setInterval(() => {
-        if (isDash) {
-            let max_elems = 8;
-            let current_elem= 0;
-            elements_out.forEach(element => {
-                if (current_elem < max_elems) {
-                    current_elem++;
-                    let app = document.querySelector(".dashboard");
-                    createElement(app, element, true);
-                    translateElement(element.id, true);
-                }
-            });
-            console.log("Client: Started, dash_listener clean")
-            clearInterval(dash_listener);
-        }
+    // dash_listener = setInterval(() => {
+    //     if (isDash) {
+    //         let max_elems = 2;
+    //         let current_elem= 0;
+    //         elements_out.forEach(element => {
+    //             if (current_elem < max_elems) {
+    //                 current_elem++;
+    //                 let app = document.querySelector(".dashboard");
+    //                 createElement(app, element, true);
+    //                 translateElement(element.id, true);
+    //             }
+    //         });
+    //         console.log("Client: Started, dash_listener clean")
+    //         clearInterval(dash_listener);
+    //     }
 
-    }, 100)
+
+    // }, 100)
 
 });
 
@@ -51,33 +52,33 @@ document.querySelector(".dashboard__but-back").addEventListener("click", () => {
     clearInterval(restore_snaps);
 });
 
-
-// In case the user returns from project to dashboard this button will start dashboard again
-document.querySelector(".project__but-back").addEventListener("click", () => {
+function closeProject () {
     document.querySelector(".dashboard").style.display = "block";
     document.querySelector(".project").style.display = "none";
     document.querySelector(".project__container__bars-container").remove();
 
     isDash = true;
 
-    dash_listener = setInterval(() => {
+    videojs(document.querySelector('#story_container__video')).muted(true);
 
-        if (isDash) {
-            let max_elems = 4;
-            let current_elem= 0;
-            elements_out.forEach(element => {
-                if (current_elem < max_elems) {
-                    current_elem++;
-                    let app = document.querySelector(".dashboard");
-                    createElement(app, element, true);
-                    translateElement(element.id, true);
-                }
-            });
-            console.log("Client: Started, dash_listener clean")
-            clearInterval(dash_listener);
-        }
+    // dash_listener = setInterval(() => {
 
-    }, 800)
+    //     if (isDash) {
+    //         let max_elems = 2;
+    //         let current_elem= 0;
+    //         elements_out.forEach(element => {
+    //             if (current_elem < max_elems) {
+    //                 current_elem++;
+    //                 let app = document.querySelector(".dashboard");
+    //                 createElement(app, element, true);
+    //                 translateElement(element.id, true);
+    //             }
+    //         });
+    //         console.log("Client: Started, dash_listener clean")
+    //         clearInterval(dash_listener);
+    //     }
+
+    // }, 800)
 
     restore_snaps = setInterval(() => {
         if (isDash) {
@@ -92,5 +93,9 @@ document.querySelector(".project__but-back").addEventListener("click", () => {
                 console.log("Client: An element has been created: " + rndm_element.id, "Resting elements Out: ", elements_out);
             }
         }
-    }, 5000);
+    }, 8000);
+}
+// In case the user returns from project to dashboard this button will start dashboard again
+document.querySelector(".project__but-back").addEventListener("click", () => {
+    closeProject();
 });

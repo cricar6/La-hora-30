@@ -61,8 +61,9 @@
                 height: 50px
                 background-size: cover
                 background-position: center
-                background: white
                 border-radius: 100px
+                transition: background-image 0.2s ease-in-out
+
     &__but-leader
         position: absolute
         top: 60px
@@ -202,6 +203,10 @@
 .pop-up
     position: fixed
     top: 0
+    display: flex
+    justify-content: center
+    align-content: center
+    align-items: center
     
     &__background
     width: 100vw
@@ -216,7 +221,8 @@
         align-items: center
 
         padding: 20px
-        background: white;
+        background: white
+
         &__description
             font-family: Work Sans
             font-style: normal

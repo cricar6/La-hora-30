@@ -15,6 +15,7 @@ function startProject() {
     console.log("Client: Project Screen started");
 
     createProject();
+    videojs(document.querySelector('#story_container__video')).muted(false);
 
     // The vars for random button --------------------------------------------------------
     let resting_projects = [0, 1, 2, 3];
@@ -25,8 +26,25 @@ function startProject() {
 
     resting_projects[index_proj] = undefined;
 
+    // Change images 
+    let random_leader = document.querySelector(".project__but-random__dummie__leader");
+
+    let random_leader_srcs = [];
+    resting_projects.forEach((element) => {
+        if (element != null){
+            random_leader_srcs.push(projects[element].leader.thumb);
+        }
+    });
+
+    let change_leader = setInterval (()=> {
+        const item = random_leader_srcs[Math.floor(Math.random()*random_leader_srcs.length)];
+        random_leader.style.backgroundImage = "url("+item+")";
+
+    },1500);
+
     // The random button --------------------------------------------------------
     document.querySelector(".project__but-random").addEventListener("click", () => {
+
         localStorage.setItem('media_selected', JSON.stringify(1));
 
         if (!resting_projects.every((element) => {
@@ -69,10 +87,20 @@ function startProject() {
             pop_up_container.appendChild(pop_up_description);
             pop_up_container.appendChild(pop_up_but_container);
 
-            background.appendChild(pop_up_but_container);
+            background.appendChild(pop_up_container);
             pop_up.appendChild(background);
             
             project_container.appendChild(pop_up);
+
+            pop_up_no.addEventListener("click", () => {
+                closeProject();
+                pop_up.remove();
+            });
+
+            pop_up_yes.addEventListener("click", () => {
+                resting_projects = [0, 1, 2, 3];
+                pop_up.remove();
+            });
         }
 
         if (resting_projects[0] != undefined) {
@@ -83,6 +111,15 @@ function startProject() {
 
             createProject();
             resting_projects[0] = undefined;
+
+            random_leader_srcs = [];
+            resting_projects.forEach((element) => {
+                if (element != null){
+                    random_leader_srcs.push(projects[element].leader.thumb);
+                }
+            });
+        
+            console.log(random_leader_srcs, "sources");
         }
     })
 }

@@ -48,11 +48,11 @@ class Snapshot {
         if (depth == 0) {
             return .5;
         } else if (depth == 1) {
-            return .7;
+            return .6;
         } else if (depth == 2) {
-            return .8;
+            return .7;
         } else if (depth == 3) {
-            return .9;
+            return .8;
         }
 
         this.el.style.zIndex = depth + 10;
@@ -68,29 +68,19 @@ class Snapshot {
      * @param {number} width 
      * @param {number} height 
      */
-    definePosition(isFirst, width, height) {
-
-        let pos_x_min = 0;
-        let pos_x_max = this.context.width - ((this.context.width / 100) * width);
+    definePosition(isFirst, width, height) {       
+        let pos_x= window.innerWidth;
         
+        const determined_y = window.innerHeight / 5;
         
-        let pos_y_min = 0;
-        let pos_y_max = this.context.height - ((this.context.height / 100) * height) - 200;
+        let pos_y_min = determined_y;
+        let pos_y_max = determined_y*3;       
         
-
-        let pos_x;
-
-        isFirst ?
-            pos_x = Math.floor(Math.random() * (pos_x_max - pos_x_min)) + pos_x_min :
-            pos_x = this.context.width + width;
-        
-        const determined_height = this.context.height / 5;
-
-        const pos_y_pos = [determined_height, determined_height*2, determined_height*3];
-        let index = Math.floor(Math.random() * pos_y_pos.length),
-            pos_y = pos_y_pos[index];
+        // const pos_y_pos = [determined_y, determined_y*2, ];
+        // let index = Math.floor(Math.random() * pos_y_pos.length),
+        //     pos_y = pos_y_pos[index];
     
-            //let pos_y = Math.floor(Math.random() * (pos_y_max - pos_y_min)) + pos_y_min;
+        let pos_y = Math.floor(Math.random() * (pos_y_max - pos_y_min)) + pos_y_min;
 
         this.pos_x = pos_x;
         this.pos_y = pos_y;
@@ -104,7 +94,7 @@ class Snapshot {
      * of sizes, and height will be defined respecting the ratio
      */
     defineSize() {
-        const widths = [15, 20, 25];
+        const widths = [15, 17, 20];
         let index = Math.floor(Math.random() * widths.length),
             width_selected = widths[index];
 
@@ -148,7 +138,6 @@ class Snapshot {
     }
 
     defineMedia () {
-        console.log(this.media, "this is the media to work");
         switch (this.media.type) {
             case 0:
                 const text = document.createElement('p');
@@ -166,7 +155,7 @@ class Snapshot {
                 this.container.appendChild(img);
                 break;
             case 2: 
-                const video = document.createElement('img');
+                const video = document.createElement('div');
                 video.classList.add("video-element");
                 video.style.backgroundImage = 'url('+this.media.thumb+')'; 
 

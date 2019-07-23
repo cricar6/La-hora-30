@@ -42,6 +42,7 @@ button {
   background: url("../La-hora.png");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100%;
 }
 
 .dashboard__logo {
@@ -196,5 +197,22 @@ video {
 
 .vjs-has-started .vjs-control-bar {
   display: none;
+}
+
+.video-js .vjs-tech {
+  /* make the video larger so it can hide*/
+  width: 102%;
+  height: 102%;
+  /* displace video to hide*/
+  left: -5px;
+  /* allow space for hiding*/
+  margin: -10px;
+  position: absolute;
+  top: 0;
+}
+
+.video-js {
+  /* make sure overflow is hidden*/
+  overflow: hidden;
 }
 /*# sourceMappingURL=main.css.map */

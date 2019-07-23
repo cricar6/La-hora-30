@@ -86,8 +86,9 @@
   height: 50px;
   background-size: cover;
   background-position: center;
-  background: white;
   border-radius: 100px;
+  -webkit-transition: background-image 0.2s ease-in-out;
+  transition: background-image 0.2s ease-in-out;
 }
 
 .project__but-leader {
@@ -301,6 +302,17 @@
 .pop-up {
   position: fixed;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
