@@ -55,7 +55,7 @@ function startProject() {
                 shuffle(resting_projects);
             }
         } else {
-            //añadir pop-up
+            //Pop Up visualization code
 
             const pop_up = document.createElement("div");
             pop_up.classList.add("pop-up");
@@ -103,6 +103,7 @@ function startProject() {
             });
         }
 
+        // if the element in resting project to check does exists, remove bars, create other project.
         if (resting_projects[0] != undefined) {
 
             current_project = projects[resting_projects[0]];
@@ -237,12 +238,15 @@ function createProject() {
 
     const leader_img = document.querySelector(".project__but-leader__leader__img");
     leader_img.style.backgroundImage = "url(" + current_project.leader.thumb + ")";
-
-
-
-    
 }
 
+/**
+ * This video will change the actual current video values
+ * 
+ * @param {object} content 
+ * @param {number} current_index 
+ * @param {boolean} pass 
+ */
 function changeVideo (content, current_index, pass) {
     videojs(document.querySelector('#story_container__video')).ready(function () {
     
